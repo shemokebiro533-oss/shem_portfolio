@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ profile.full_name|default:"Shem Okebiro" }} — {{ profile.role|default:"Django Engineer" }}</title>
+  <meta name="description" content="{{ profile.tagline|default:'Django engineer building fast, reliable web applications.' }}" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+
+  <!-- Background layer: profile picture + rust tint -->
+  <div class="bg-layer">
+    {% if profile and profile.profile_picture %}
+      <div class="bg-image" style="background-image: url('{{ profile.profile_picture.url }}');"></div>
+    {% else %}
+      <div class="bg-image bg-fallback"></div>
+    {% endif %}
+    <div class="bg-tint"></div>
+    <div class="bg-grain"></div>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <!-- Top bar: brand + listed nav + social -->
+  <header class="topbar">
+    <div class="topbar-inner">
+
+      <a class="topbar-brand" href="#top">
+        <span class="brand-name">{{ profile.full_name|default:"Shem Okebiro" }}</span>
+      </a>
+
+      <nav class="topbar-nav" aria-label="Primary">
+        <a href="#top">Home</a>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="topbar-social">
+        {% for link in social_links %}
+          <a href="{{ link.url }}" target="_blank" rel="noopener" title="{{ link.display_label }}" aria-label="{{ link.display_label }}">
+            <i class="{{ link.icon_class }}"></i>
+          </a>
+        {% endfor %}
+      </div>
+
+    </div>
+  </header>
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="hero-inner">
+
+      <p class="hero-eyebrow mono">
+        {% if profile.location %}{{ profile.location }}{% else %}Nairobi, Kenya{% endif %}
+        <span class="dot">•</span>
+        {% if profile.role %}{{ profile.role }}{% else %}Django Engineer{% endif %}
+      </p>
+
+      <h1 class="hero-headline">
+        <span>IN NEED</span>
+        <span>OF A</span>
+        <span>SOFTWARE?</span>
+      </h1>
+
+      <p class="hero-tagline">
+        I'm <strong>{{ profile.full_name|default:"Shem Okebiro" }}</strong> —
+        a <strong>Django engineer</strong> who builds fast, reliable,
+        production-grade web applications.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">
+          <i class="fa-solid fa-arrow-down"></i> View Work
+        </a>
+        {% if profile.email %}
+          <a class="btn btn-ghost" href="mailto:{{ profile.email }}">
+            <i class="fa-solid fa-envelope"></i> Get in Touch
+          </a>
+        {% endif %}
+        {% if profile.resume %}
+          <a class="btn btn-ghost" href="{{ profile.resume.url }}" target="_blank" rel="noopener">
+            <i class="fa-solid fa-file-arrow-down"></i> Résumé
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="hero-scroll mono">scroll <i class="fa-solid fa-arrow-down-long"></i></div>
+  </main>
+
+
+  <!-- About -->
+  <section id="about" class="section about-section">
+    <div class="section-head">
+      <span class="mono-label">01 — About</span>
+      <h2 class="section-title">WHO I AM</h2>
+    </div>
+
+    <div class="about-grid">
+
+      <div class="about-main">
+        <p class="about-lead">
+          I'm Shem a <strong>Django engineer</strong> who designs and ships full-stack web
+          applications — from database schema and REST APIs to polished, responsive
+          front-ends. I care about clean architecture, fast load times, and code that
+          the next developer can actually read.
+        </p>
+
+        <p class="about-body">
+          Over the years I've delivered <strong>multiple production projects</strong> for
+          <strong>trusted, repeat customers</strong> — SaaS dashboards, e-commerce
+          platforms, internal tools, and content-driven sites. Every project I take on
+          gets the same treatment: clear scoping, weekly check-ins, and a handover that
+          leaves the client in full control of their product.
+        </p>
+
+        <p class="about-body">
+          I work end-to-end. That means I can take an idea from a rough sketch to a
+          deployed Django app with authentication, an admin panel, a REST API, and a
+          front-end that feels considered — not templated.
+        </p>
+
+        <div class="about-cta">
+          <a class="btn btn-primary" href="#contact">
+            <i class="fa-solid fa-paper-plane"></i> Work With Me
+          </a>
+        </div>
+      </div>
+
+      <aside class="about-side">
+
+        <div class="side-block">
+          <span class="mono-label">Core Stack</span>
+          <ul class="tag-list">
+            <li>Python</li>
+            <li>Django</li>
+            <li>Django REST Framework</li>
+            <li>PostgreSQL</li>
+            <li>SQLite</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>Git &amp; GitHub</li>
+          </ul>
+        </div>
+
+        <div class="side-block">
+          <span class="mono-label">Tooling &amp; Deployment</span>
+          <ul class="tag-list">
+            <li>VS Code</li>
+            <li>PyCharm</li>
+            <li>Docker</li>
+            <li>Gunicorn</li>
+            <li>Nginx</li>
+            <li>Railway</li>
+            <li>Render</li>
+            <li>Heroku</li>
+            <li>AWS (S3, EC2)</li>
+          </ul>
+        </div>
+
+        <div class="side-block">
+          <span class="mono-label">Also Comfortable With</span>
+          <ul class="tag-list">
+            <li>Celery</li>
+            <li>Redis</li>
+            <li>Stripe</li>
+            <li>Tailwind CSS</li>
+            <li>Bootstrap</li>
+            <li>Figma</li>
+          </ul>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num">{{ projects|length }}+</span>
+        <span class="stat-label mono">Projects Delivered</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">Trusted</span>
+        <span class="stat-label mono">Repeat Clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">End-to-End</span>
+        <span class="stat-label mono">Design &amp; Build</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">Full</span>
+        <span class="stat-label mono">Stack Django</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="section work-section">
+    <div class="section-head">
+      <span class="mono-label">02 — Selected Work</span>
+      <h2 class="section-title">PROJECTS</h2>
+    </div>
+
+    {% if projects %}
+      <div class="work-grid">
+        {% for project in projects %}
+          <article class="work-card {% if project.featured %}is-featured{% endif %}">
+            {% if project.image %}
+              <div class="work-media">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy" />
+              </div>
+            {% endif %}
+            <div class="work-body">
+              <div class="work-meta mono">
+                {% if project.role %}<span>{{ project.role }}</span>{% endif %}
+                {% if project.year %}<span class="dot">•</span><span>{{ project.year }}</span>{% endif %}
+                {% if project.featured %}<span class="badge">Featured</span>{% endif %}
+              </div>
+              <h3 class="work-title">{{ project.title }}</h3>
+              {% if project.short_description %}
+                <p class="work-desc">{{ project.short_description }}</p>
+              {% endif %}
+              {% if project.link %}
+                <a class="work-link mono" href="{{ project.link }}" target="_blank" rel="noopener">
+                  Visit <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty mono">No projects yet — add them in the admin.</p>
+    {% endif %}
+  </section>
+
+  <!-- Contact -->
+  <footer id="contact" class="section contact-section">
+    <div class="section-head">
+      <span class="mono-label">03 — Contact</span>
+      <h2 class="section-title">LET'S TALK</h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-block">
+        <span class="mono-label">Email</span>
+        {% if profile.email %}
+          <a href="mailto:{{ profile.email }}" class="contact-link">{{ profile.email }}</a>
+        {% else %}
+          <span class="muted">Add email in admin</span>
+        {% endif %}
+      </div>
+
+      <div class="contact-block">
+        <span class="mono-label">Location</span>
+        <span class="contact-link">{{ profile.location|default:"—" }}</span>
+      </div>
+
+      <div class="contact-block">
+        <span class="mono-label">Social</span>
+        <div class="social-row">
+          {% for link in social_links %}
+            <a href="{{ link.url }}" target="_blank" rel="noopener" title="{{ link.display_label }}">
+              <i class="{{ link.icon_class }}"></i>
+            </a>
+          {% empty %}
+            <span class="muted">—</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-base mono">
+      <span>© {% now "Y" %} {{ profile.full_name|default:"Shem Okebiro" }}</span>
+      <span>Built with Django</span>
+    </div>
+  </footer>
+
+</body>
+</html>
