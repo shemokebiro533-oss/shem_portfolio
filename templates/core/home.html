@@ -1,152 +1,512 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ profile.full_name|default:"Shem Okebiro" }} — {{ profile.role|default:"Django Engineer" }}</title>
-  <meta name="description" content="{{ profile.tagline|default:'Django engineer building fast, reliable web applications.' }}" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- =========================================================
+       PRIMARY SEO
+       ========================================================= -->
+
+  <title>
+    Shem Okebiro | Software Developer & Django Web Developer in Kenya
+  </title>
+
+  <meta
+    name="description"
+    content="Shem Okebiro is a software developer and Django web developer in Kenya building modern websites, web applications, business systems, e-commerce platforms and custom software solutions."
+  />
+
+  <meta
+    name="keywords"
+    content="Shem Okebiro, Shem Okebiro developer, Shem Okebiro software developer, software developer Kenya, web developer Kenya, website developer Kenya, Django developer Kenya, Django engineer, Python developer, web development, website development, software development, systems development, web applications, custom software, business systems, e-commerce development, Django web applications, Python Django developer"
+  />
+
+  <meta name="author" content="Shem Okebiro" />
+  <meta name="creator" content="Shem Okebiro" />
+  <meta name="publisher" content="Shem Okebiro" />
+
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <link
+    rel="canonical"
+    href="https://shemportfolio.pythonanywhere.com/"
+  />
+
+  <!-- =========================================================
+       GOOGLE / SEARCH ENGINE
+       ========================================================= -->
+
+  <meta
+    name="googlebot"
+    content="index, follow, max-image-preview:large"
+  />
+
+  <!-- =========================================================
+       OPEN GRAPH / FACEBOOK / LINK SHARING
+       ========================================================= -->
+
+  <meta property="og:type" content="website" />
+
+  <meta
+    property="og:title"
+    content="Shem Okebiro | Software Developer & Django Web Developer"
+  />
+
+  <meta
+    property="og:description"
+    content="Portfolio of Shem Okebiro — software developer and Django web developer building websites, web applications, business systems and custom software."
+  />
+
+  <meta
+    property="og:url"
+    content="https://shemportfolio.pythonanywhere.com/"
+  />
+
+  <meta
+    property="og:site_name"
+    content="Shem Okebiro"
+  />
+
+  <meta
+    property="og:locale"
+    content="en_KE"
+  />
+
+  {% if profile and profile.profile_picture %}
+    <meta
+      property="og:image"
+      content="{{ request.scheme }}://{{ request.get_host }}{{ profile.profile_picture.url }}"
+    />
+  {% endif %}
+
+  <!-- =========================================================
+       TWITTER / X CARD
+       ========================================================= -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+
+  <meta
+    name="twitter:title"
+    content="Shem Okebiro | Software Developer & Django Web Developer"
+  />
+
+  <meta
+    name="twitter:description"
+    content="Shem Okebiro — software developer and Django web developer specializing in websites, web applications, systems and custom software."
+  />
+
+  {% if profile and profile.profile_picture %}
+    <meta
+      name="twitter:image"
+      content="{{ request.scheme }}://{{ request.get_host }}{{ profile.profile_picture.url }}"
+    />
+  {% endif %}
+
+  <!-- =========================================================
+       PROFILE / PERSON STRUCTURED DATA
+       Helps search engines understand who the site is about.
+       ========================================================= -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "@id": "https://shemportfolio.pythonanywhere.com/#shem-okebiro",
+      "name": "Shem Okebiro",
+      "url": "https://shemportfolio.pythonanywhere.com/",
+      "jobTitle": "Software Developer and Django Web Developer",
+      "description": "Shem Okebiro is a software developer and Django web developer in Kenya specializing in website development, web applications, business systems and custom software development.",
+      "knowsAbout": [
+        "Software Development",
+        "Web Development",
+        "Website Development",
+        "Django",
+        "Python",
+        "Django REST Framework",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "PostgreSQL",
+        "Web Applications",
+        "Systems Development",
+        "E-commerce Development",
+        "Database Development",
+        "Git",
+        "GitHub"
+      ],
+      "sameAs": [
+        "https://github.com/shemokebiro533-oss"
+      ]
+    }
+  }
+  </script>
+
+  <!-- =========================================================
+       WEBSITE STRUCTURED DATA
+       ========================================================= -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://shemportfolio.pythonanywhere.com/#website",
+    "url": "https://shemportfolio.pythonanywhere.com/",
+    "name": "Shem Okebiro",
+    "description": "Shem Okebiro's software development and Django web development portfolio.",
+    "publisher": {
+      "@type": "Person",
+      "name": "Shem Okebiro",
+      "url": "https://shemportfolio.pythonanywhere.com/"
+    },
+    "inLanguage": "en"
+  }
+  </script>
+
+  <!-- =========================================================
+       PERFORMANCE
+       ========================================================= -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <!-- =========================================================
+       FONTS
+       ========================================================= -->
+
   <link
     href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
+
+  <!-- =========================================================
+       FONT AWESOME
+       ========================================================= -->
+
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJA9J/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+  <!-- =========================================================
+       MAIN CSS
+       ========================================================= -->
+
+  <link
+    rel="stylesheet"
+    href="{% static 'css/style.css' %}"
+  />
+
 </head>
+
 <body>
 
-  <!-- Background layer: profile picture + rust tint -->
+  <!-- =========================================================
+       BACKGROUND
+       ========================================================= -->
+
   <div class="bg-layer">
+
     {% if profile and profile.profile_picture %}
-      <div class="bg-image" style="background-image: url('{{ profile.profile_picture.url }}');"></div>
+
+      <div
+        class="bg-image"
+        style="background-image: url('{{ profile.profile_picture.url }}');"
+      ></div>
+
     {% else %}
+
       <div class="bg-image bg-fallback"></div>
+
     {% endif %}
+
     <div class="bg-tint"></div>
     <div class="bg-grain"></div>
     <div class="bg-vignette"></div>
+
   </div>
 
-  <!-- Top bar: brand + listed nav + social -->
+
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+
   <header class="topbar">
+
     <div class="topbar-inner">
 
-      <a class="topbar-brand" href="#top">
-        <span class="brand-name">{{ profile.full_name|default:"Shem Okebiro" }}</span>
+      <a
+        class="topbar-brand"
+        href="#top"
+        aria-label="Shem Okebiro home"
+      >
+        <span class="brand-name">
+          {{ profile.full_name|default:"Shem Okebiro" }}
+        </span>
       </a>
 
-      <nav class="topbar-nav" aria-label="Primary">
+
+      <nav
+        class="topbar-nav"
+        aria-label="Primary navigation"
+      >
+
         <a href="#top">Home</a>
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#contact">Contact</a>
+
       </nav>
 
+
       <div class="topbar-social">
+
         {% for link in social_links %}
-          <a href="{{ link.url }}" target="_blank" rel="noopener" title="{{ link.display_label }}" aria-label="{{ link.display_label }}">
+
+          <a
+            href="{{ link.url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="{{ link.display_label }}"
+            aria-label="{{ link.display_label }}"
+          >
             <i class="{{ link.icon_class }}"></i>
           </a>
+
         {% endfor %}
+
       </div>
 
     </div>
+
   </header>
-  <!-- Hero -->
+
+
+  <!-- =========================================================
+       HERO
+       Main SEO-visible content
+       ========================================================= -->
+
   <main id="top" class="hero">
+
     <div class="hero-inner">
 
       <p class="hero-eyebrow mono">
-        {% if profile.location %}{{ profile.location }}{% else %}Nairobi, Kenya{% endif %}
+
+        {% if profile.location %}
+          {{ profile.location }}
+        {% else %}
+          Kenya
+        {% endif %}
+
         <span class="dot">•</span>
-        {% if profile.role %}{{ profile.role }}{% else %}Django Engineer{% endif %}
+
+        {% if profile.role %}
+          {{ profile.role }}
+        {% else %}
+          Software Developer & Django Engineer
+        {% endif %}
+
       </p>
+
 
       <h1 class="hero-headline">
-        <span>IN NEED</span>
-        <span>OF A</span>
-        <span>SOFTWARE?</span>
+
+        <span>SOFTWARE</span>
+        <span>DEVELOPMENT</span>
+        <span>DONE RIGHT.</span>
+
       </h1>
 
+
       <p class="hero-tagline">
-        I'm <strong>{{ profile.full_name|default:"Shem Okebiro" }}</strong> —
-        a <strong>Django engineer</strong> who builds fast, reliable,
-        production-grade web applications.
+
+        I'm
+        <strong>{{ profile.full_name|default:"Shem Okebiro" }}</strong>
+        —
+        a <strong>software developer and Django web developer</strong>
+        building modern websites, web applications, business systems,
+        e-commerce platforms and custom software solutions.
+
       </p>
 
+
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#work">
-          <i class="fa-solid fa-arrow-down"></i> View Work
+
+        <a
+          class="btn btn-primary"
+          href="#work"
+        >
+          <i class="fa-solid fa-arrow-down"></i>
+          View Work
         </a>
+
+
         {% if profile.email %}
-          <a class="btn btn-ghost" href="mailto:{{ profile.email }}">
-            <i class="fa-solid fa-envelope"></i> Get in Touch
+
+          <a
+            class="btn btn-ghost"
+            href="mailto:{{ profile.email }}"
+          >
+            <i class="fa-solid fa-envelope"></i>
+            Get in Touch
           </a>
+
         {% endif %}
+
+
         {% if profile.resume %}
-          <a class="btn btn-ghost" href="{{ profile.resume.url }}" target="_blank" rel="noopener">
-            <i class="fa-solid fa-file-arrow-down"></i> Résumé
+
+          <a
+            class="btn btn-ghost"
+            href="{{ profile.resume.url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fa-solid fa-file-arrow-down"></i>
+            Résumé
           </a>
+
         {% endif %}
+
       </div>
+
     </div>
 
-    <div class="hero-scroll mono">scroll <i class="fa-solid fa-arrow-down-long"></i></div>
+
+    <div class="hero-scroll mono">
+
+      scroll
+      <i class="fa-solid fa-arrow-down-long"></i>
+
+    </div>
+
   </main>
 
 
-  <!-- About -->
-  <section id="about" class="section about-section">
+  <!-- =========================================================
+       ABOUT
+       ========================================================= -->
+
+  <section
+    id="about"
+    class="section about-section"
+    aria-labelledby="about-heading"
+  >
+
     <div class="section-head">
-      <span class="mono-label">01 — About</span>
-      <h2 class="section-title">WHO I AM</h2>
+
+      <span class="mono-label">
+        01 — About
+      </span>
+
+      <h2
+        id="about-heading"
+        class="section-title"
+      >
+        SOFTWARE &amp; WEB DEVELOPMENT
+      </h2>
+
     </div>
+
 
     <div class="about-grid">
 
+
       <div class="about-main">
+
         <p class="about-lead">
-          I'm Shem a <strong>Django engineer</strong> who designs and ships full-stack web
-          applications — from database schema and REST APIs to polished, responsive
-          front-ends. I care about clean architecture, fast load times, and code that
-          the next developer can actually read.
+
+          I'm
+          <strong>Shem Okebiro</strong>,
+          a <strong>Django engineer and software developer</strong>
+          who designs and builds full-stack web applications,
+          websites and custom software systems.
+
         </p>
 
-        <p class="about-body">
-          Over the years I've delivered <strong>multiple production projects</strong> for
-          <strong>trusted, repeat customers</strong> — SaaS dashboards, e-commerce
-          platforms, internal tools, and content-driven sites. Every project I take on
-          gets the same treatment: clear scoping, weekly check-ins, and a handover that
-          leaves the client in full control of their product.
-        </p>
 
         <p class="about-body">
-          I work end-to-end. That means I can take an idea from a rough sketch to a
-          deployed Django app with authentication, an admin panel, a REST API, and a
-          front-end that feels considered — not templated.
+
+          I work with
+          <strong>Python, Django, Django REST Framework,
+          PostgreSQL, JavaScript, HTML and CSS</strong>
+          to create reliable digital products for businesses,
+          organizations and individuals.
+
         </p>
+
+
+        <p class="about-body">
+
+          My development work includes
+          <strong>business management systems,
+          e-commerce platforms, dashboards,
+          REST APIs, database-driven websites,
+          authentication systems and custom web applications.</strong>
+
+        </p>
+
+
+        <p class="about-body">
+
+          I work end-to-end — from planning and database design
+          to development, testing, deployment and maintenance.
+          The goal is to build software that is useful,
+          responsive, maintainable and ready for real users.
+
+        </p>
+
 
         <div class="about-cta">
-          <a class="btn btn-primary" href="#contact">
-            <i class="fa-solid fa-paper-plane"></i> Work With Me
+
+          <a
+            class="btn btn-primary"
+            href="#contact"
+          >
+            <i class="fa-solid fa-paper-plane"></i>
+            Work With Me
           </a>
+
         </div>
+
       </div>
+
+
+      <!-- =====================================================
+           TECHNOLOGIES
+           ===================================================== -->
 
       <aside class="about-side">
 
+
         <div class="side-block">
-          <span class="mono-label">Core Stack</span>
+
+          <span class="mono-label">
+            Core Technologies
+          </span>
+
           <ul class="tag-list">
+
             <li>Python</li>
             <li>Django</li>
             <li>Django REST Framework</li>
@@ -155,13 +515,44 @@
             <li>HTML5</li>
             <li>CSS3</li>
             <li>JavaScript</li>
-            <li>Git &amp; GitHub</li>
+            <li>Git</li>
+            <li>GitHub</li>
+
           </ul>
+
         </div>
 
+
         <div class="side-block">
-          <span class="mono-label">Tooling &amp; Deployment</span>
+
+          <span class="mono-label">
+            Software Development
+          </span>
+
           <ul class="tag-list">
+
+            <li>Web Applications</li>
+            <li>Business Systems</li>
+            <li>E-commerce</li>
+            <li>REST APIs</li>
+            <li>Authentication</li>
+            <li>Database Systems</li>
+            <li>Admin Dashboards</li>
+            <li>Custom Software</li>
+
+          </ul>
+
+        </div>
+
+
+        <div class="side-block">
+
+          <span class="mono-label">
+            Deployment &amp; Tools
+          </span>
+
+          <ul class="tag-list">
+
             <li>VS Code</li>
             <li>PyCharm</li>
             <li>Docker</li>
@@ -170,127 +561,350 @@
             <li>Railway</li>
             <li>Render</li>
             <li>Heroku</li>
-            <li>AWS (S3, EC2)</li>
+            <li>AWS</li>
+
           </ul>
+
         </div>
 
+
         <div class="side-block">
-          <span class="mono-label">Also Comfortable With</span>
+
+          <span class="mono-label">
+            Frontend
+          </span>
+
           <ul class="tag-list">
-            <li>Celery</li>
-            <li>Redis</li>
-            <li>Stripe</li>
-            <li>Tailwind CSS</li>
+
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
             <li>Bootstrap</li>
-            <li>Figma</li>
+            <li>Tailwind CSS</li>
+            <li>Responsive Design</li>
+
           </ul>
+
         </div>
 
       </aside>
 
     </div>
 
+
+    <!-- =======================================================
+         STATS
+         ======================================================= -->
+
     <div class="stats-row">
+
       <div class="stat">
-        <span class="stat-num">{{ projects|length }}+</span>
-        <span class="stat-label mono">Projects Delivered</span>
+
+        <span class="stat-num">
+          {{ projects|length }}+
+        </span>
+
+        <span class="stat-label mono">
+          Projects
+        </span>
+
       </div>
+
+
       <div class="stat">
-        <span class="stat-num">Trusted</span>
-        <span class="stat-label mono">Repeat Clients</span>
+
+        <span class="stat-num">
+          Django
+        </span>
+
+        <span class="stat-label mono">
+          Backend
+        </span>
+
       </div>
+
+
       <div class="stat">
-        <span class="stat-num">End-to-End</span>
-        <span class="stat-label mono">Design &amp; Build</span>
+
+        <span class="stat-num">
+          Full-Stack
+        </span>
+
+        <span class="stat-label mono">
+          Development
+        </span>
+
       </div>
+
+
       <div class="stat">
-        <span class="stat-num">Full</span>
-        <span class="stat-label mono">Stack Django</span>
+
+        <span class="stat-num">
+          Python
+        </span>
+
+        <span class="stat-label mono">
+          Software Development
+        </span>
+
       </div>
+
     </div>
+
   </section>
 
-  <!-- Work -->
-  <section id="work" class="section work-section">
+
+  <!-- =========================================================
+       PROJECTS
+       ========================================================= -->
+
+  <section
+    id="work"
+    class="section work-section"
+    aria-labelledby="projects-heading"
+  >
+
     <div class="section-head">
-      <span class="mono-label">02 — Selected Work</span>
-      <h2 class="section-title">PROJECTS</h2>
+
+      <span class="mono-label">
+        02 — Selected Work
+      </span>
+
+      <h2
+        id="projects-heading"
+        class="section-title"
+      >
+        WEB &amp; SOFTWARE PROJECTS
+      </h2>
+
     </div>
+
 
     {% if projects %}
+
       <div class="work-grid">
+
         {% for project in projects %}
-          <article class="work-card {% if project.featured %}is-featured{% endif %}">
+
+          <article
+            class="work-card {% if project.featured %}is-featured{% endif %}"
+          >
+
             {% if project.image %}
+
               <div class="work-media">
-                <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy" />
+
+                <img
+                  src="{{ project.image.url }}"
+                  alt="{{ project.title }} — Shem Okebiro software development project"
+                  loading="lazy"
+                />
+
               </div>
+
             {% endif %}
+
+
             <div class="work-body">
+
               <div class="work-meta mono">
-                {% if project.role %}<span>{{ project.role }}</span>{% endif %}
-                {% if project.year %}<span class="dot">•</span><span>{{ project.year }}</span>{% endif %}
-                {% if project.featured %}<span class="badge">Featured</span>{% endif %}
+
+                {% if project.role %}
+                  <span>{{ project.role }}</span>
+                {% endif %}
+
+                {% if project.year %}
+                  <span class="dot">•</span>
+                  <span>{{ project.year }}</span>
+                {% endif %}
+
+                {% if project.featured %}
+                  <span class="badge">Featured</span>
+                {% endif %}
+
               </div>
-              <h3 class="work-title">{{ project.title }}</h3>
+
+
+              <h3 class="work-title">
+                {{ project.title }}
+              </h3>
+
+
               {% if project.short_description %}
-                <p class="work-desc">{{ project.short_description }}</p>
+
+                <p class="work-desc">
+                  {{ project.short_description }}
+                </p>
+
               {% endif %}
+
+
               {% if project.link %}
-                <a class="work-link mono" href="{{ project.link }}" target="_blank" rel="noopener">
-                  Visit <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                <a
+                  class="work-link mono"
+                  href="{{ project.link }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View {{ project.title }} project"
+                >
+                  Visit
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
+
               {% endif %}
+
             </div>
+
           </article>
+
         {% endfor %}
+
       </div>
+
     {% else %}
-      <p class="empty mono">No projects yet — add them in the admin.</p>
+
+      <p class="empty mono">
+        Software and web development projects will appear here.
+      </p>
+
     {% endif %}
+
   </section>
 
-  <!-- Contact -->
-  <footer id="contact" class="section contact-section">
+
+  <!-- =========================================================
+       CONTACT
+       ========================================================= -->
+
+  <footer
+    id="contact"
+    class="section contact-section"
+  >
+
     <div class="section-head">
-      <span class="mono-label">03 — Contact</span>
-      <h2 class="section-title">LET'S TALK</h2>
+
+      <span class="mono-label">
+        03 — Contact
+      </span>
+
+      <h2 class="section-title">
+        HIRE SHEM OKEBIRO
+      </h2>
+
     </div>
+
 
     <div class="contact-grid">
+
+
       <div class="contact-block">
-        <span class="mono-label">Email</span>
+
+        <span class="mono-label">
+          Software Development
+        </span>
+
+        <span class="contact-link">
+          Websites • Web Applications • Business Systems • Custom Software
+        </span>
+
+      </div>
+
+
+      <div class="contact-block">
+
+        <span class="mono-label">
+          Email
+        </span>
+
         {% if profile.email %}
-          <a href="mailto:{{ profile.email }}" class="contact-link">{{ profile.email }}</a>
+
+          <a
+            href="mailto:{{ profile.email }}"
+            class="contact-link"
+          >
+            {{ profile.email }}
+          </a>
+
         {% else %}
-          <span class="muted">Add email in admin</span>
+
+          <span class="muted">
+            Add email in admin
+          </span>
+
         {% endif %}
+
       </div>
 
-      <div class="contact-block">
-        <span class="mono-label">Location</span>
-        <span class="contact-link">{{ profile.location|default:"—" }}</span>
-      </div>
 
       <div class="contact-block">
-        <span class="mono-label">Social</span>
+
+        <span class="mono-label">
+          Location
+        </span>
+
+        <span class="contact-link">
+          {{ profile.location|default:"Kenya" }}
+        </span>
+
+      </div>
+
+
+      <div class="contact-block">
+
+        <span class="mono-label">
+          Social
+        </span>
+
         <div class="social-row">
+
           {% for link in social_links %}
-            <a href="{{ link.url }}" target="_blank" rel="noopener" title="{{ link.display_label }}">
+
+            <a
+              href="{{ link.url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="{{ link.display_label }}"
+              aria-label="{{ link.display_label }}"
+            >
               <i class="{{ link.icon_class }}"></i>
             </a>
+
           {% empty %}
-            <span class="muted">—</span>
+
+            <span class="muted">
+              —
+            </span>
+
           {% endfor %}
+
         </div>
+
       </div>
+
     </div>
 
+
+    <!-- =======================================================
+         FOOTER
+         ======================================================= -->
+
     <div class="footer-base mono">
-      <span>© {% now "Y" %} {{ profile.full_name|default:"Shem Okebiro" }}</span>
-      <span>Built with Django</span>
+
+      <span>
+        © {% now "Y" %}
+        {{ profile.full_name|default:"Shem Okebiro" }}
+      </span>
+
+      <span>
+        Software Developer • Django Developer • Web Developer
+      </span>
+
     </div>
+
   </footer>
+
 
 </body>
 </html>
+

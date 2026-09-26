@@ -1,10 +1,26 @@
+
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# =========================================================
+# SECURITY
+# =========================================================
+
 SECRET_KEY = "django-insecure-change-me-in-production-shem-portfolio-key"
+
 DEBUG = True
-ALLOWED_HOSTS = ["*"]
+
+ALLOWED_HOSTS = [
+    "shemportfolio.pythonanywhere.com",
+    "localhost",
+    "127.0.0.1",
+]
+
+
+# =========================================================
+# APPLICATIONS
+# =========================================================
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -13,8 +29,22 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Sitemap
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+
+    # Your apps
     "core",
 ]
+
+# Django Sites Framework
+SITE_ID = 1
+
+
+# =========================================================
+# MIDDLEWARE
+# =========================================================
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -26,12 +56,24 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
+# =========================================================
+# URL CONFIGURATION
+# =========================================================
+
 ROOT_URLCONF = "shem_portfolio.urls"
+
+
+# =========================================================
+# TEMPLATES
+# =========================================================
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -44,7 +86,17 @@ TEMPLATES = [
     },
 ]
 
+
+# =========================================================
+# WSGI
+# =========================================================
+
 WSGI_APPLICATION = "shem_portfolio.wsgi.application"
+
+
+# =========================================================
+# DATABASE
+# =========================================================
 
 DATABASES = {
     "default": {
@@ -53,23 +105,72 @@ DATABASES = {
     }
 }
 
+
+# =========================================================
+# PASSWORD VALIDATION
+# =========================================================
+
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
+
+# =========================================================
+# INTERNATIONALIZATION
+# =========================================================
+
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
+
+TIME_ZONE = "Africa/Nairobi"
+
 USE_I18N = True
+
 USE_TZ = True
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# =========================================================
+# STATIC FILES
+# =========================================================
+
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "media/"
+
+# =========================================================
+# MEDIA FILES
+# =========================================================
+
+MEDIA_URL = "/media/"
+
 MEDIA_ROOT = BASE_DIR / "media"
 
+
+# =========================================================
+# DEFAULT PRIMARY KEY
+# =========================================================
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# =========================================================
+# CSRF / PYTHONANYWHERE
+# =========================================================
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://shemportfolio.pythonanywhere.com"]
